@@ -1,0 +1,43 @@
+.pagination {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.iconButton {
+  background: none;
+  border: 1px solid #6a0bff;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  gap: 10px;
+}
+.iconButton:disabled {
+  background-color: #f0e7ff80;
+  color: #d1d1d1;
+  border: 1px solid #d1d1d1;
+}
+
+.breadCrumbs {
+  display: flex;
+  align-items: center;
+}
+
+.page {
+  size: 14px;
+  border: none;
+  background: none;
+  color: rgba(71, 71, 71, 1);
+}
+
+.pageActive {
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 2px;
+  background-color: #6a0bff;
+}

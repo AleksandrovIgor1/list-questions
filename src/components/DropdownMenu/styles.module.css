@@ -1,0 +1,22 @@
+.dropdown {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px -2px #0000001f;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+
+.detail {
+  all: unset;
+  padding: 6px 10px;
+  border-radius: 12px;
+  color: #141414;
+  width: 100%;
+}
+
+.detail:hover {
+  color: #6a0bff;
+  padding: 6px 10px;
+  background-color: #f4f4f4;
+}

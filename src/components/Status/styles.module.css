@@ -1,0 +1,28 @@
+.status {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: max-content;
+}
+
+.title {
+  color: #474747;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.statusOptions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.statusItem {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #bababa;
+}
+
+.statusItemActive {
+  border-color: #6a0bff;
+}

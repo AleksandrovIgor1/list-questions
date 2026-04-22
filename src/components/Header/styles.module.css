@@ -1,0 +1,142 @@
+.header {
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  z-index: 1000;
+  padding: 0 40px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 8px auto;
+  max-width: 1200px;
+}
+
+.left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.logoMobile {
+  display: none;
+}
+
+.preparationWrapper {
+  display: none;
+}
+
+.preparationButton {
+  display: none;
+  gap: 4px;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.nav a {
+  color: #191919;
+}
+
+.right {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+
+.hamburgerMenu {
+  display: none;
+}
+
+.logIn {
+  border: none;
+  background: none;
+  color: #6a0bff;
+  cursor: pointer;
+}
+
+.signIn {
+  color: #fff;
+  background-color: #6a0bff;
+  border-radius: 12px;
+  padding: 12.5px 28.5px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    border-bottom: 1px solid #e8e8e8;
+    padding: 0 30px;
+  }
+  .nav {
+    display: none;
+  }
+
+  .logIn,
+  .signIn {
+    display: none;
+  }
+
+  .hamburgerMenu {
+    display: block;
+  }
+
+  .preparationWrapper {
+    display: block;
+    position: relative;
+  }
+
+  .dropdown {
+    position: absolute;
+    box-shadow: 0 0 10px -2px #0000001f;
+    display: flex;
+    background-color: #fff;
+    padding: 15px;
+    gap: 8px;
+    margin-top: 15px;
+    flex-direction: column;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .dropdownOpen {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .preparationButton {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 10px;
+  }
+  .logoDesktop {
+    display: none;
+  }
+
+  .logoMobile {
+    display: block;
+  }
+}

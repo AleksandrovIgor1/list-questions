@@ -1,0 +1,43 @@
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  color: #474747;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.skillsOptions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skillItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid #bababa;
+}
+
+.skillItemActive {
+  border-color: #6a0bff;
+}
+
+.allOptions {
+  color: #5509cc;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
