@@ -7,7 +7,7 @@ interface RichTextProps {
 }
 
 export const RichText = ({ content }: RichTextProps) => {
-  const cleanHtml = useMemo(() => {
+  const cleanHtml = useMemo<string>(() => {
     if (typeof content !== "string") return "";
 
     let normalized = content.trim();
@@ -18,7 +18,7 @@ export const RichText = ({ content }: RichTextProps) => {
 
     const parsed = marked.parse(normalized);
 
-    return DOMPurify.sanitize(parsed);
+    return DOMPurify.sanitize(typeof parsed === 'string' ? parsed : '');
   }, [content]);
 
   return <div dangerouslySetInnerHTML={{ __html: cleanHtml }} />;
