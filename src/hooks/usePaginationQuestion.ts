@@ -1,6 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useQuestions } from "./useQuestions";
+import {
+  useGetQuestionsQuery,
+  useLazyGetQuestionsQuery,
+} from "../store/api/questionsApi";
+import type { Question } from "../store/api/types";
 
 export const usePaginationQuestion = (id: number) => {
   const navigate = useNavigate();
@@ -9,21 +13,17 @@ export const usePaginationQuestion = (id: number) => {
 
   const currentPage = Number(searchParams.get("page")) || 1;
 
-  const { data: questions } = useQuestions({ currentPage });
+  const [loadQuestions] = useLazyGetQuestionsQuery();
+  const { data: questions } = useGetQuestionsQuery({ currentPage });
 
-  const questionsList = questions?.data ?? [];
+  const questionsList = useMemo(() => questions?.data ?? [], [questions?.data]);
 
-  const totalPages = useMemo(() => {
-    if (!questions?.total) return 1;
-    return Math.max(
-      1,
-      Math.ceil((questions?.total || 0) / (questions?.limit || 10)),
-    );
-  }, [questions?.total, questions?.limit]);
+  const totalPages = Math.max(
+    1,
+    Math.ceil((questions?.total || 0) / (questions?.limit || 10)),
+  );
 
-  const currentIndex = questionsList.findIndex((q) => q.id === id);
-
-  const directionRef = useRef<"prev" | "next" | null>(null);
+  const currentIndex = questionsList.findIndex((q: Question) => q.id === id);
 
   const navigateTo = useCallback(
     (targetId: number, page: number) => {
@@ -40,7 +40,7 @@ export const usePaginationQuestion = (id: number) => {
     [navigate],
   );
 
-  const nextPage = useCallback(() => {
+  const nextPage = useCallback(async () => {
     if (questionsList.length === 0) return;
 
     if (currentIndex >= 0 && currentIndex < questionsList.length - 1) {
@@ -49,12 +49,30 @@ export const usePaginationQuestion = (id: number) => {
     }
 
     if (currentPage < totalPages) {
-      directionRef.current = "next";
-      navigateTo(id, currentPage + 1);
-    }
-  }, [questionsList, currentIndex, currentPage, totalPages, id, navigateTo]);
+      try {
+        const response = await loadQuestions({
+          currentPage: currentPage + 1,
+        }).unwrap();
 
-  const prevPage = useCallback(() => {
+        const firstQuestion = response.data[0];
+
+        if (firstQuestion) {
+          navigateTo(firstQuestion.id, currentPage + 1);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [
+    questionsList,
+    currentIndex,
+    currentPage,
+    totalPages,
+    navigateTo,
+    loadQuestions,
+  ]);
+
+  const prevPage = useCallback(async () => {
     if (questionsList.length === 0) return;
 
     if (currentIndex > 0) {
@@ -63,30 +81,22 @@ export const usePaginationQuestion = (id: number) => {
     }
 
     if (currentPage > 1) {
-      directionRef.current = "prev";
-      navigateTo(id, currentPage - 1);
+      try {
+        const response = await loadQuestions({
+          currentPage: currentPage - 1,
+        }).unwrap();
+
+        const prevQuestions = response.data;
+        const lastQuestion = prevQuestions[prevQuestions.length - 1];
+
+        if (lastQuestion) {
+          navigateTo(lastQuestion.id, currentPage - 1);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }, [questionsList, currentIndex, currentPage, id, navigateTo]);
-
-  useEffect(() => {
-    if (questionsList.length === 0) return;
-
-    if (questionsList.some((q) => q.id === id)) return;
-
-    let targetId;
-
-    if (directionRef.current === "prev") {
-      targetId = questionsList[questionsList.length - 1]?.id;
-    } else {
-      targetId = questionsList[0]?.id;
-    }
-
-    if (targetId !== undefined) {
-      navigateTo(targetId, currentPage);
-    }
-
-    directionRef.current = null;
-  }, [questionsList, id, currentPage, navigateTo]);
+  }, [questionsList, currentIndex, currentPage, navigateTo, loadQuestions]);
 
   return {
     nextPage,

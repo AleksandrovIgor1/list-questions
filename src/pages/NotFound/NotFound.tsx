@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 
-export const NotFound = () => {
+const NotFound = () => {
   return (
     <div className={styles.notFound}>
       <h2>Страница не найдена!</h2>
@@ -10,3 +10,5 @@ export const NotFound = () => {
     </div>
   );
 };
+
+export default NotFound;

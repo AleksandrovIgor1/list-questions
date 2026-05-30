@@ -1,4 +1,3 @@
-import { useQuestion } from "../../hooks/useQuestion";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./styles.module.css";
 import { usePaginationQuestion } from "../../hooks/usePaginationQuestion";
@@ -7,8 +6,9 @@ import { QuestionFilter } from "../../components/QuestionFilter/QuestionFilter";
 import { GuruCard } from "../../components/GuruCard/GuruCard";
 import { QuestionBody } from "../../components/QuestionBody/QuestionBody";
 import { Icon } from "../../icons/Icon";
+import { useGetQuestionByIdQuery } from "../../store/api/questionsApi";
 
-export const Question = () => {
+const Question = () => {
   const { id } = useParams<{ id: string }>();
 
   const questionId = useMemo(() => {
@@ -28,13 +28,13 @@ export const Question = () => {
     navigate("/questions");
   };
 
-  const { data: question, loading, error } = useQuestion({ id: questionId ?? 0 });
+  const { data: question, isLoading, error } = useGetQuestionByIdQuery(questionId ?? 0)
 
   const { nextPage, prevPage } = usePaginationQuestion(questionId ?? 0);
 
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {'status' in error ? JSON.stringify(error.data) : error.message}</div>;
   if (!question) return <div>Not found</div>;
 
   return (
@@ -69,3 +69,5 @@ export const Question = () => {
     </div>
   );
 };
+
+export default Question;

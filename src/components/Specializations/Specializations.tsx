@@ -1,4 +1,4 @@
-import type { ISpecializations } from "../../api/types";
+import type { ISpecializations } from "../../store/api/types";
 import { Expandable } from "../Expandable/Expandable";
 import styles from "./styles.module.css";
 
@@ -9,6 +9,7 @@ interface SpecializationsProps {
 }
 
 export const Specializations = ({ specializations, selected, onChange }: SpecializationsProps) => {
+
   if (!specializations.length) return [];
 
   const toggle = (id: number) => {

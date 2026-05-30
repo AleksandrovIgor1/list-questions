@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { useRef } from "react";
-import type { Question } from "../../api/types";
+import type { Question } from "../../store/api/types";
 import { Icon } from "../../icons/Icon";
 
 interface QuestionFilterProps {

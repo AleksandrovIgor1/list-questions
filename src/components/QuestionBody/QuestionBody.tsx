@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 import { useLockBodyScroll } from "../../hooks/useLockBodyScroll";
 import { RichText } from "../RichText/RichText";
-import type { Question } from "../../api/types";
+import type { Question } from "../../store/api/types";
 import { Icon } from "../../icons/Icon";
 
 interface QuestionBodyProps {

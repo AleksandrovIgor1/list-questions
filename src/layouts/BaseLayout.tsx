@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Header } from "../components/Header/Header";
 import { Footer } from "../components/Footer/Footer";
 
-export const BaseLayout = () => {
+const BaseLayout = () => {
   return (
     <>
       <Header />
@@ -16,3 +16,4 @@ export const BaseLayout = () => {
   );
 }
 
+export default BaseLayout

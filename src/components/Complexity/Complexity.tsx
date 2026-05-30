@@ -27,7 +27,6 @@ export const Complexity = ({ complexities, selected, onChange }: ComplexityProps
       <div className={styles.options}>
         {complexities.map((item) => {
           const active = item.value.every((v) => selected.includes(v))
-
           return (
             <div
               key={item.label}

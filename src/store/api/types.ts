@@ -13,6 +13,10 @@ export interface ISpecializations {
   updatedAt: string;
 }
 
+export interface SpecializationsResponse {
+  data: ISpecializations[];
+}
+
 export interface ISkills {
   id: number;
   title: string;
@@ -21,6 +25,10 @@ export interface ISkills {
   createdAt: string;
   updatedAt: string;
   specializations: ISpecializations[];
+}
+
+export interface SkillsResponse {
+  data: ISkills[];
   currentPage?: number;
 }
 
@@ -65,3 +73,50 @@ export interface PublicQueryParams {
   complexity?: string;
   rate?: string;
 }
+
+export interface ISkill {
+  id: number;
+  title: string;
+  description: string;
+  imageSrc: string | null;
+}
+
+export interface IAnswer {
+  questionId: number;
+  questionTitle: string;
+  answer: "KNOWN" | "UNKNOWN";
+}
+
+export interface IInterviewResponse {
+  answers: IAnswer[];
+}
+
+export interface IQuestion {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  code: string;
+  imageSrc: string | null;
+  keywords: string[];
+  longAnswer: string;
+  shortAnswer: string;
+  status: string;
+  rate: number;
+  complexity: number;
+  createdById: string;
+  updatedById: string;
+  questionSpecializations: ISpecializations[];
+  questionSkills: ISkill[];
+}
+
+export interface IInterview {
+  id: string;
+  startDate: string;
+  fullCount: number;
+  skills: string[];
+  response: IInterviewResponse;
+  questions: IQuestion[];
+}
+
+export type AnswerStatus = "KNOWN" | "UNKNOWN";

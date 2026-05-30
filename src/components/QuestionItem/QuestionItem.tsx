@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { useState, useRef, useEffect, type MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import type { Question } from "../../api/types";
+import type { Question } from "../../store/api/types";
 import { RichText } from "../RichText/RichText";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
 import { Icon } from "../../icons/Icon";

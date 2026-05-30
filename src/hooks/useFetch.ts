@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api } from "../api/axios";
+import { api } from "../store/api/axios";
 
 interface FetchResult<T> {
   data: T | null | undefined;

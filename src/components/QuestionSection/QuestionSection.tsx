@@ -2,15 +2,19 @@ import styles from "./styles.module.css";
 import { type Dispatch, type SetStateAction } from "react";
 import { usePaginationQuestions } from "../../hooks/usePaginationQuestions";
 import { useLockBodyScroll } from "../../hooks/useLockBodyScroll";
-import type { Question } from "../../api/types";
+import type { Question } from "../../store/api/types";
 import { QuestionItem } from "../QuestionItem/QuestionItem";
 import { Pagination } from "../Pagination/Pagination";
 import { Icon } from "../../icons/Icon";
+import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import type { SerializedError } from "@reduxjs/toolkit";
 
 interface QuestionSectionProps {
   data: Question[],
   loading: boolean,
-  error: string | null,
+  error: FetchBaseQueryError
+  | SerializedError
+  | undefined,
   currentPage: number,
   setCurrentPage: Dispatch<SetStateAction<number>>,
   totalPages: number,
@@ -37,7 +41,7 @@ export const QuestionSection = ({
   useLockBodyScroll(isFiltersOpen);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <div>Error: {'status' in error ? JSON.stringify(error.data) : error.message}</div>;
   if (!data.length) return <div>Нет вопросов</div>;
 
   return (

@@ -1,0 +1,356 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  padding: 40px;
+}
+
+.statisticsCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+
+  padding: 24px;
+
+  border-radius: 12px;
+
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px 0 #6a63761a;
+}
+
+.statisticsHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  font-size: 20px;
+}
+
+.statisticsAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  color: #6a0bff;
+  cursor: pointer;
+}
+
+.statisticsContent {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+}
+
+.statsCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+
+  border-radius: 16px;
+
+  box-shadow: 0 4px 10px 0 #6a63761a;
+}
+
+.statsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 33px;
+
+  padding: 24px;
+}
+
+.cardTitle {
+  font-size: 20px;
+  color: #191919;
+}
+
+.statisticsChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.statisticsGrid {
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  padding: 8px 12px;
+
+  border-radius: 5px;
+
+  box-shadow: 0 4px 10px 0 #6a63761a;
+}
+
+.statLabel {
+  color: #8c8c8c;
+  font-size: 11.1px;
+}
+
+.statValue {
+  color: #303030;
+  font-size: 11.1px;
+}
+
+.skillsCard {
+  display: flex;
+  flex: 1.15;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 24px;
+
+  border-radius: 24px;
+
+  box-shadow: 0 4px 10px 0 #6a63761a;
+}
+
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skillItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skillHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skillTitle {
+  color: #303030;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.skillValue {
+  color: #303030;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.progressBar {
+  overflow: hidden;
+
+  width: 100%;
+  height: 12px;
+
+  border-radius: 999px;
+
+  background: #ece7f7;
+}
+
+.progressFill {
+  height: 100%;
+
+  border-radius: 999px;
+
+  background-color: #6a0bff;
+
+  transition: width 0.3s ease;
+}
+
+.statisticsActionMobile {
+  display: none;
+}
+
+.questionsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  width: 100%;
+
+  padding: 24px;
+
+  border-radius: 12px;
+
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px 0 #6a63761a;
+}
+
+.questionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 20px;
+}
+
+.questionCard {
+  display: flex;
+  gap: 20px;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  box-shadow: 0 4px 10px 0 #6a63761a;
+}
+
+.questionImage {
+  width: 154px;
+  height: 154px;
+  flex-shrink: 0;
+  border: 1px solid #e1dede;
+  border-radius: 8px;
+}
+
+.questionInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.questionTitle {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.answerButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 12px;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: #f8f8f8;
+
+  cursor: pointer;
+}
+
+.answerButtonKnown {
+  color: #6a0bff;
+}
+
+.answerButtonUnknown {
+  color: #474747;
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding: 20px 30px;
+  }
+
+  .statisticsCard {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .statsContent {
+    padding: 20px 14px;
+  }
+
+  .skillsCard {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .statisticsGrid {
+    gap: 8px;
+  }
+
+  .questionsCard {
+    padding: 16px;
+  }
+
+  .questionsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 24px 10px;
+  }
+
+  .statisticsCard {
+    padding: 20px 10px;
+    border-radius: 12px;
+  }
+
+  .statisticsAction {
+    display: none;
+  }
+
+  .statisticsContent {
+    flex-direction: column;
+  }
+
+  .statsContent {
+    padding: 20px 12px;
+  }
+
+  .skillsCard {
+    padding: 20px 10px;
+    border-radius: 12px;
+  }
+
+  .statisticsGrid {
+    gap: 8px;
+  }
+
+  .statisticsActionMobile {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    justify-content: center;
+    gap: 8px;
+
+    color: #6a0bff;
+    cursor: pointer;
+  }
+
+  .questionsCard {
+    padding: 20px 10px;
+    border-radius: 12px;
+  }
+
+  .questionsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .questionCard {
+    gap: 16px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .questionImage {
+    width: 94px;
+    height: 94px;
+  }
+
+  .questionTitle {
+    font-size: 16px;
+  }
+}

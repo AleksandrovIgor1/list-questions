@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import { useRef } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import type { ISkills, ISpecializations } from "../../api/types";
+import type { ISkills, ISpecializations } from "../../store/api/types";
 import { Complexity } from "../Complexity/Complexity";
 import { Search } from "../Search/Search";
 import { Skills } from "../Skills/Skills";

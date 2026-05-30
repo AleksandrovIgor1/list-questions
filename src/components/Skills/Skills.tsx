@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import type { ISkills } from "../../api/types";
+import type { ISkills } from "../../store/api/types";
 import { Expandable } from "../Expandable/Expandable";
 import { Icon } from "../../icons/Icon";
 

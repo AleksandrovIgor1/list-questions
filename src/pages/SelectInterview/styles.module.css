@@ -1,0 +1,192 @@
+button {
+  cursor: pointer;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  padding: 24px;
+
+  border-radius: 24px;
+
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px 0 #6a63761a;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  color: #191919;
+  font-size: 24px;
+}
+
+.content {
+  display: flex;
+}
+
+.leftOptions {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.rightOptionsWrapper {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.rightOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  color: #474747;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tagButton {
+  padding: 6px 12px;
+
+  border: 1px solid #bababa;
+  border-radius: 12px;
+
+  background-color: transparent;
+
+  transition: 0.2s;
+}
+
+.tagButtonActive {
+  border-color: #6a0bff;
+}
+
+.tagButtonDisabled {
+  padding: 10px 12px;
+
+  border: 1px solid #bababa;
+  border-radius: 12px;
+
+  background-color: transparent;
+
+  color: #bababa;
+}
+
+.counterSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.counterButton {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 11px 12px;
+
+  border: 1px solid #bababa;
+  border-radius: 12px;
+
+  background-color: transparent;
+
+  color: #bababa;
+}
+
+.startButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  gap: 8px;
+
+  padding: 12px 41px;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: #6a0bff;
+
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.startButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding: 24px 30px;
+  }
+  .card {
+    padding: 20px 16px;
+    gap: 20px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .rightOptionsWrapper {
+    justify-content: start;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 10px;
+  }
+  .card {
+    padding: 20px 10px;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .content {
+    gap: 16px;
+  }
+
+  .leftOptions {
+    gap: 16px;
+  }
+
+  .rightOptions {
+    gap: 16px;
+  }
+}

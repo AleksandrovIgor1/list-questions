@@ -2,8 +2,10 @@ import { useCallback, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { Icon } from "../../icons/Icon";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
+
   const [isPreparationOpen, setIsPreparationOpen] = useState(false);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -31,20 +33,20 @@ export const Header = () => {
             >
               Подготовка <Icon name="preparation-toggle" />
             </button>
-            <div
+            <nav
               className={`${styles.dropdown} ${isPreparationOpen ? styles.dropdownOpen : ""}`}
             >
-              <a href="#">База вопросов</a>
-              <a href="#">Тренажёр</a>
-              <a href="#">Материалы</a>
-              <a href="#">Навыки (hh)</a>
-            </div>
+              <Link to='/questions'>База вопросов</Link>
+              <Link to='/interview'>Тренажёр</Link>
+              <Link to='/questions'>Материалы</Link>
+              <Link to='/questions'>Навыки (hh)</Link>
+            </nav>
           </div>
           <nav className={styles.nav}>
-            <a href="#">База вопросов</a>
-            <a href="#">Тренажёр</a>
-            <a href="#">Материалы</a>
-            <a href="#">Навыки (hh)</a>
+            <Link to='/questions'>База вопросов</Link>
+            <Link to='/interview'>Тренажёр</Link>
+            <Link to='/questions'>Материалы</Link>
+            <Link to='/questions'>Навыки (hh)</Link>
           </nav>
         </div>
         <div className={styles.right}>

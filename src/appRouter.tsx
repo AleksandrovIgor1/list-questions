@@ -1,24 +1,45 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { BaseLayout } from "./layouts/BaseLayout";
-import { Main } from "./pages/Main/Main";
-import { Question } from "./pages/Question/Question";
-import { NotFound } from "./components/NotFound/NotFound";
+import { lazy } from "react";
+
+const BaseLayout = lazy(() => import('./layouts/BaseLayout'));
+const Main = lazy(() => import('./pages/Main/Main'));
+const Question = lazy(() => import('./pages/Question/Question'));
+const Interview = lazy(() => import('./pages/Interview/Interview'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
+const SelectInterview = lazy(() => import('./pages/SelectInterview/SelectInterview'))
+const Statistics = lazy(() => import('./pages/Statistics/Statistics'))
 
 export const appRouter = createBrowserRouter([
     {
+        path: '/',
         element: <BaseLayout />,
         children: [
             {
-                path: "/",
+                index: true,
                 element: <Navigate to="/questions" replace />,
             },
             {
                 path: "questions",
-                index: true,
-                element: <Main />,
+                element: <Main />
             },
-            { path: "questions/:id", element: <Question /> },
-            { path: "*", element: <NotFound /> },
+            {
+                path: "questions/:id", element: <Question />
+            },
+            {
+                path: 'interview', element: <SelectInterview />
+            },
+            {
+                path: 'interview/:id', element: <Interview />
+            },
+            {
+                path: 'interview/:id', element: <Interview />
+            },
+            {
+                path: 'statistics/:id', element: <Statistics />
+            },
+            {
+                path: "*", element: <NotFound />
+            },
         ],
     },
 ]);
