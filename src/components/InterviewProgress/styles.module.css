@@ -1,0 +1,57 @@
+.progressSection {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px 0 #6a63761a;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.headerProgress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: #191919;
+  font-size: 20px;
+}
+
+.questionsCountDesktop {
+  color: #757575;
+  font-size: 14px;
+}
+
+.questionsCountMobile {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .progressSection {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .progressSection {
+    padding: 10px;
+    gap: 16px;
+  }
+
+  .questionsCountDesktop {
+    display: none;
+  }
+
+  .questionsCountMobile {
+    display: block;
+
+    color: #757575;
+    font-size: 14px;
+
+    align-self: flex-end;
+    margin-top: -12px;
+  }
+}

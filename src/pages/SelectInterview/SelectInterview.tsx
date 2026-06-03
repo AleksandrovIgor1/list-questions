@@ -7,6 +7,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Tooltip } from "../../ui/Tooltip/Tooltip";
+import { SpecializationsInterview } from "../../components/SpecializationsInterview/SpecializationsInterview";
+import { SkillsInterview } from "../../components/SkillsInterview/SkillsInterview";
 
 const SelectInterview = () => {
   const navigate = useNavigate();
@@ -26,53 +28,10 @@ const SelectInterview = () => {
       <section className={styles.card}>
         <div className={styles.layout}>
           <h1 className={styles.title}>Собеседование</h1>
-
           <div className={styles.content}>
             <div className={styles.leftOptions}>
-              <div className={styles.section}>
-                <h4 className={styles.sectionTitle}>
-                  Выбор специализации
-                </h4>
-
-                <div className={styles.tags}>
-                  {specializations?.map((specialization) => (
-                    <button
-                      key={specialization.id}
-                      onClick={() =>
-                        setSelectedSpecializationId(
-                          specialization.id
-                        )
-                      }
-                      className={`${styles.tagButton} ${selectedSpecializationId ===
-                        specialization.id
-                        ? styles.tagButtonActive
-                        : ""
-                        }`}
-                    >
-                      {specialization.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.section}>
-                <h4 className={styles.sectionTitle}>
-                  Категории вопросов
-                </h4>
-
-                <div className={styles.tags}>
-                  {skills?.map((skill) => (
-                    <Tooltip key={skill.id}>
-                      <button
-                        disabled
-                        className={styles.tagButtonDisabled}
-                      >
-                        {skill.title}
-                      </button>
-                    </Tooltip>
-                  ))}
-                </div>
-              </div>
+              <SpecializationsInterview selectedId={selectedSpecializationId} items={specializations} onSelect={setSelectedSpecializationId} />
+              <SkillsInterview items={skills} />
             </div>
 
             <div className={styles.rightOptionsWrapper}>

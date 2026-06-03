@@ -1,0 +1,53 @@
+.dontKnowButton {
+  gap: 8px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #474747;
+}
+
+.dontKnowButtonActive {
+  color: #6a0bff;
+  background-color: #f8f8f8;
+}
+
+.thumbsDownIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.knowButton {
+  gap: 8px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #474747;
+}
+
+.knowButtonActive {
+  color: #6a0bff;
+  background-color: #f8f8f8;
+}
+
+.thumbsUpIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.knowTitle {
+  display: none;
+}
+
+.dontKnowTitle {
+  display: none;
+}

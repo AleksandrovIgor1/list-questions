@@ -18,7 +18,7 @@ const Statistics = () => {
         : undefined;
 
     const { data: interview } = useGetInterviewQuery(
-        { specialization: specializationId! },
+        { specialization: specializationId ?? 0 },
         { skip: specializationId === undefined }
     );
 
@@ -42,25 +42,24 @@ const Statistics = () => {
         closeModal
     } = useModal();
 
+
     return (
         <div className={styles.page}>
             <section className={styles.statisticsCard}>
+                <Modal
+                    open={showModal}
+                    onClose={closeModal}
+                >
+                    <StatisticsModal
+                        open={showModal}
+                        onClose={closeModal}
+                        skillsStats={skillsStats}
+                    />
+                </Modal>
                 <div className={styles.statisticsHeader}>
                     <h2 className={styles.sectionTitle}>
                         Умный режим изучения вопросов
                     </h2>
-
-                    <Modal
-                        open={showModal}
-                        onClose={closeModal}
-                    >
-                        <StatisticsModal
-                            open={showModal}
-                            onClose={closeModal}
-                            skillsStats={skillsStats}
-                        />
-                    </Modal>
-
                     <span
                         className={styles.statisticsAction}
                         onClick={openModal}
@@ -186,7 +185,7 @@ const Statistics = () => {
                 </h2>
 
                 <div className={styles.questionsGrid}>
-                    {interview?.response.answers.map(answer => (
+                    {interview?.response?.answers.map(answer => (
                         <div
                             key={answer.questionId}
                             className={styles.questionCard}

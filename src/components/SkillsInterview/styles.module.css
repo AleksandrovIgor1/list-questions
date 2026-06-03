@@ -1,0 +1,28 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  color: #474747;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tagButtonDisabled {
+  padding: 10px 12px;
+
+  border: 1px solid #bababa;
+  border-radius: 12px;
+
+  background-color: transparent;
+
+  color: #bababa;
+}

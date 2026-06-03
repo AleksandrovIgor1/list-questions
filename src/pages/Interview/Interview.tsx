@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { Progress } from '../../ui/Progress/Progress';
 import { Icon } from '../../icons/Icon';
 import styles from './styles.module.css'
 import { useGetInterviewQuery } from '../../store/api/InterviewApi';
@@ -7,6 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import type { AnswerStatus } from '../../store/api/types';
 import { setAnswer } from '../../store/slices/interviewSlice';
+import { InterviewProgress } from '../../components/InterviewProgress/InterviewProgress';
+import { InterviewAnswerContainer } from '../../components/InterviewAnswerContainer/InterviewAnswerContainer';
+import { useInterviewNavigation } from '../../hooks/useInterviewNavigation';
 
 
 
@@ -17,14 +18,23 @@ const Interview = () => {
   const { id } = useParams();
   const specializationId = id ? Number(id) : undefined;
 
-  const { data: interview, isLoading, error } = useGetInterviewQuery({ specialization: specializationId! }, { skip: specializationId === undefined })
+  const { data: interview, isLoading, error } = useGetInterviewQuery({ specialization: specializationId ?? 0 }, { skip: specializationId === undefined })
 
   const dispatch = useAppDispatch();
-  const answers = useAppSelector(state => state.interview.answers)
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+  const answers = useAppSelector((state) => state.interview.answers);
 
-  const currentQuestion = interview?.questions[currentQuestionIndex];
+  const {
+    currentQuestion,
+    currentQuestionIndex,
+    handlePrev,
+    handleNext,
+  } = useInterviewNavigation(interview);
+
+  const currentAnswer = currentQuestion
+    ? answers[currentQuestion.id]
+    : undefined;
+
   const handleAnswer = (status: AnswerStatus) => {
     if (!currentQuestion) return;
     dispatch(setAnswer({
@@ -33,23 +43,14 @@ const Interview = () => {
     }))
   }
 
-  const currentAnswer = currentQuestion ? answers[currentQuestion.id] : undefined;
+  const handleShowAnswer = () => {
+    if (!currentQuestion) return;
+    navigate(`/questions/${currentQuestion.id}`);
+  };
 
-  const handlePrev = () => {
-    if (currentQuestionIndex === 0) return;
-
-    setCurrentQuestionIndex(prev => prev - 1);
-  }
-
-  const handleNext = () => {
-    if (!interview) return;
-
-    const isLastQuestionIndex = currentQuestionIndex >= interview.questions.length - 1;
-
-    if (isLastQuestionIndex) return;
-
-    setCurrentQuestionIndex(prev => prev + 1);
-  }
+  const handleFinish = () => {
+    navigate(`/statistics/${specializationId}`);
+  };
 
 
   if (isLoading) return <div>Loading...</div>;
@@ -58,28 +59,7 @@ const Interview = () => {
 
   return (
     <div className={styles.container}>
-      <section className={styles.progressSection}>
-        <div className={styles.headerProgress}>
-          <h2 className={styles.title}>
-            Вопросы собеседования
-          </h2>
-
-          <span className={styles.questionsCountDesktop}>
-            {`${currentQuestionIndex + 1}/${interview.fullCount}`}
-          </span>
-        </div>
-
-        <div className={styles.progressWrapper}>
-          <Progress
-            value={currentQuestionIndex + 1}
-            max={interview.fullCount}
-          />
-        </div>
-
-        <span className={styles.questionsCountMobile}>
-          {`${currentQuestionIndex + 1}/${interview.fullCount}`}
-        </span>
-      </section>
+      <InterviewProgress current={currentQuestionIndex} total={interview.fullCount} />
       <section className={styles.questionWrapper}>
         <div className={styles.navigation}>
           <button
@@ -112,35 +92,12 @@ const Interview = () => {
               </h2>
               <span
                 className={styles.showAnswerDesktop}
-                onClick={() => navigate(`/questions/${currentQuestion?.id}`)}
+                onClick={handleShowAnswer}
               >
                 Посмотреть ответ
               </span>
             </div>
-
-            <div className={styles.answerContainerDesktop}>
-              <button
-                onClick={() => handleAnswer('UNKNOWN')}
-                className={`${styles.dontKnowButton} ${currentAnswer === 'UNKNOWN'
-                  ? styles.dontKnowButtonActive
-                  : ''
-                  }`}
-              >
-                <Icon name='thumbs-down' className={styles.thumbsDownIcon} />
-                <span className={styles.dontKnowTitle}>Не знаю</span>
-              </button>
-
-              <button
-                onClick={() => handleAnswer('KNOWN')}
-                className={`${styles.knowButton} ${currentAnswer === 'KNOWN'
-                  ? styles.knowButtonActive
-                  : ''
-                  }`}
-              >
-                <Icon name='thumbs-up' className={styles.thumbsUpIcon} />
-                <span className={styles.knowTitle}>Знаю</span>
-              </button>
-            </div>
+            <InterviewAnswerContainer currentAnswer={currentAnswer} onAnswer={handleAnswer} className={styles.answerContainerDesktop} />
           </div>
 
           <div className={styles.imageWrapper}>
@@ -153,38 +110,16 @@ const Interview = () => {
           <div className={styles.mobileActions}>
             <span
               className={styles.showAnswerMobile}
-              onClick={() => navigate(`/questions/${currentQuestion?.id}`)}
+              onClick={handleShowAnswer}
             >
               Посмотреть ответ
             </span>
 
-            <div className={styles.answerContainerMobile}>
-              <button
-                onClick={() => handleAnswer('UNKNOWN')}
-                className={`${styles.dontKnowButton} ${currentAnswer === 'UNKNOWN'
-                  ? styles.dontKnowButtonActive
-                  : ''
-                  }`}
-              >
-                <Icon name='thumbs-down' className={styles.thumbsDownIcon} />
-                <span className={styles.dontKnowTitle}>Не знаю</span>
-              </button>
-
-              <button
-                onClick={() => handleAnswer('KNOWN')}
-                className={`${styles.knowButton} ${currentAnswer === 'KNOWN'
-                  ? styles.knowButtonActive
-                  : ''
-                  }`}
-              >
-                <Icon name='thumbs-up' className={styles.thumbsUpIcon} />
-                <span className={styles.knowTitle}>Знаю</span>
-              </button>
-            </div>
+            <InterviewAnswerContainer currentAnswer={currentAnswer} onAnswer={handleAnswer} className={styles.answerContainerMobile} />
           </div>
 
         </div>
-        <button onClick={() => navigate(`/statistics/${specializationId}`)} className={styles.finishButton}>Завершить</button>
+        <button onClick={handleFinish} className={styles.finishButton}>Завершить</button>
       </section>
     </div>
   );

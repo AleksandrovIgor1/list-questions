@@ -6,17 +6,6 @@
   gap: 24px;
 }
 
-.progressSection {
-  background-color: #ffffff;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px 0 #6a63761a;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
-
 .questionWrapper {
   background-color: #ffffff;
   padding: 24px;
@@ -26,26 +15,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-
-.title {
-  color: #191919;
-  font-size: 20px;
-}
-
-.headerProgress {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.questionsCountDesktop {
-  color: #757575;
-  font-size: 14px;
-}
-
-.questionsCountMobile {
-  display: none;
 }
 
 .navigation {
@@ -151,42 +120,6 @@
   display: none;
 }
 
-.dontKnowButton {
-  gap: 8px;
-  border-radius: 12px;
-  padding: 10px 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #474747;
-}
-
-.dontKnowButtonActive {
-  color: #6a0bff;
-  background-color: #f8f8f8;
-}
-
-.knowButton {
-  gap: 8px;
-  border-radius: 12px;
-  padding: 10px 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #474747;
-}
-
-.knowButtonActive {
-  color: #6a0bff;
-  background-color: #f8f8f8;
-}
-
 .imageWrapper {
   border-radius: 24px;
   overflow: hidden;
@@ -227,10 +160,6 @@
     padding: 30px;
   }
 
-  .progressSection {
-    padding: 16px;
-  }
-
   .questionWrapper {
     padding: 16px;
   }
@@ -267,25 +196,6 @@
 @media (max-width: 768px) {
   .container {
     padding: 20px 10px;
-  }
-
-  .progressSection {
-    padding: 10px;
-    gap: 16px;
-  }
-
-  .questionsCountDesktop {
-    display: none;
-  }
-
-  .questionsCountMobile {
-    display: block;
-
-    color: #757575;
-    font-size: 14px;
-
-    align-self: flex-end;
-    margin-top: -12px;
   }
 
   .questionWrapper {
@@ -339,28 +249,6 @@
 
   .answerContainer {
     gap: 16px;
-  }
-
-  .thumbsDownIcon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .dontKnowTitle {
-    display: none;
-  }
-
-  .thumbsUpIcon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .dontKnowTitle {
-    display: none;
-  }
-
-  .knowTitle {
-    display: none;
   }
 
   .mobileActions {
